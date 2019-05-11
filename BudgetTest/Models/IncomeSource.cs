@@ -25,6 +25,8 @@ namespace BudgetTest.Models
         public string JobOf { get; set; }
         public string PositionName { get; set; }
         public bool ActiveJob { get; set; }
+        public Nullable<decimal> EstimatedIncome { get; set; }
+        public string PayFrequency { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Income> Incomes { get; set; }
