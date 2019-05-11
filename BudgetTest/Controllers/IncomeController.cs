@@ -11,7 +11,7 @@ namespace BudgetTest.Controllers
 {
     public class IncomeController : ApiController
     {
-        BudgetEntities _db = new BudgetEntities();
+        BudgetTestEntities _db = new BudgetTestEntities();
         [HttpGet]
         public List<IncomeSourceLine> GetIncomeTypes([FromUri] bool getIncomeTypes)
         {

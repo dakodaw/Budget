@@ -13,10 +13,10 @@ namespace BudgetTest.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BudgetEntities : DbContext
+    public partial class BudgetTestEntities : DbContext
     {
-        public BudgetEntities()
-            : base("name=BudgetEntities")
+        public BudgetTestEntities()
+            : base("name=BudgetTestEntities")
         {
         }
     
@@ -28,8 +28,8 @@ namespace BudgetTest.Models
         public virtual DbSet<Budget> Budgets { get; set; }
         public virtual DbSet<BudgetType> BudgetTypes { get; set; }
         public virtual DbSet<GiftCard> GiftCards { get; set; }
-        public virtual DbSet<Purchase> Purchases { get; set; }
         public virtual DbSet<Income> Incomes { get; set; }
         public virtual DbSet<IncomeSource> IncomeSources { get; set; }
+        public virtual DbSet<Purchase> Purchases { get; set; }
     }
 }

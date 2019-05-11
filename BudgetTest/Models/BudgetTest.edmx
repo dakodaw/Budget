@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BudgetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BudgetTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Budget">
           <Key>
             <PropertyRef Name="Id" />
@@ -93,7 +93,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BudgetModelStoreContainer">
+        <EntityContainer Name="BudgetTestModelStoreContainer">
           <EntitySet Name="Budget" EntityType="Self.Budget" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BudgetType" EntityType="Self.BudgetType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GiftCard" EntityType="Self.GiftCard" Schema="dbo" store:Type="Tables" />
@@ -112,7 +112,23 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BudgetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="BudgetTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BudgetTestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Budgets" EntityType="BudgetTestModel.Budget" />
+          <EntitySet Name="BudgetTypes" EntityType="BudgetTestModel.BudgetType" />
+          <EntitySet Name="GiftCards" EntityType="BudgetTestModel.GiftCard" />
+          <EntitySet Name="Incomes" EntityType="BudgetTestModel.Income" />
+          <EntitySet Name="IncomeSources" EntityType="BudgetTestModel.IncomeSource" />
+          <EntitySet Name="Purchases" EntityType="BudgetTestModel.Purchase" />
+          <AssociationSet Name="FK_Budget_BudgetType" Association="BudgetTestModel.FK_Budget_BudgetType">
+            <End Role="BudgetType" EntitySet="BudgetTypes" />
+            <End Role="Budget" EntitySet="Budgets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Income_IncomeSource" Association="BudgetTestModel.FK_Income_IncomeSource">
+            <End Role="IncomeSource" EntitySet="IncomeSources" />
+            <End Role="Income" EntitySet="Incomes" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Budget">
           <Key>
             <PropertyRef Name="Id" />
@@ -120,68 +136,27 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BudgetTypeId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="BudgetType" Relationship="Self.FK_Budget_BudgetType" FromRole="Budget" ToRole="BudgetType" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="BudgetType" Relationship="BudgetTestModel.FK_Budget_BudgetType" FromRole="Budget" ToRole="BudgetType" />
         </EntityType>
         <EntityType Name="BudgetType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BudgetType1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Budgets" Relationship="Self.FK_Budget_BudgetType" FromRole="BudgetType" ToRole="Budget" />
+          <Property Name="BudgetType1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Budgets" Relationship="BudgetTestModel.FK_Budget_BudgetType" FromRole="BudgetType" ToRole="Budget" />
         </EntityType>
         <EntityType Name="GiftCard">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Place" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="InitialAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="CardNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Place" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InitialAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="AccessCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Purchase">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PurchaseTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="GiftCardId" Type="Int32" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FutureReimbursement" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Budget_BudgetType">
-          <End Role="BudgetType" Type="Self.BudgetType" Multiplicity="1" />
-          <End Role="Budget" Type="Self.Budget" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BudgetType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Budget">
-              <PropertyRef Name="BudgetTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="BudgetEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Budgets" EntityType="Self.Budget" />
-          <EntitySet Name="BudgetTypes" EntityType="Self.BudgetType" />
-          <EntitySet Name="GiftCards" EntityType="Self.GiftCard" />
-          <EntitySet Name="Purchases" EntityType="Self.Purchase" />
-          <AssociationSet Name="FK_Budget_BudgetType" Association="Self.FK_Budget_BudgetType">
-            <End Role="BudgetType" EntitySet="BudgetTypes" />
-            <End Role="Budget" EntitySet="Budgets" />
-          </AssociationSet>
-          <EntitySet Name="Incomes" EntityType="BudgetModel.Income" />
-          <EntitySet Name="IncomeSources" EntityType="BudgetModel.IncomeSource" />
-          <AssociationSet Name="FK_Income_IncomeSource" Association="BudgetModel.FK_Income_IncomeSource">
-            <End Role="IncomeSource" EntitySet="IncomeSources" />
-            <End Role="Income" EntitySet="Incomes" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Income">
           <Key>
             <PropertyRef Name="Id" />
@@ -194,7 +169,7 @@
           <Property Name="IsReimbursement" Type="Boolean" Nullable="false" />
           <Property Name="PurchaseId" Type="Int32" />
           <Property Name="IsCash" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="IncomeSource" Relationship="BudgetModel.FK_Income_IncomeSource" FromRole="Income" ToRole="IncomeSource" />
+          <NavigationProperty Name="IncomeSource" Relationship="BudgetTestModel.FK_Income_IncomeSource" FromRole="Income" ToRole="IncomeSource" />
         </EntityType>
         <EntityType Name="IncomeSource">
           <Key>
@@ -207,11 +182,36 @@
           <Property Name="ActiveJob" Type="Boolean" Nullable="false" />
           <Property Name="EstimatedIncome" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="PayFrequency" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Incomes" Relationship="BudgetModel.FK_Income_IncomeSource" FromRole="IncomeSource" ToRole="Income" />
+          <NavigationProperty Name="Incomes" Relationship="BudgetTestModel.FK_Income_IncomeSource" FromRole="IncomeSource" ToRole="Income" />
         </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PaymentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GiftCardId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FutureReimbursement" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Budget_BudgetType">
+          <End Type="BudgetTestModel.BudgetType" Role="BudgetType" Multiplicity="1" />
+          <End Type="BudgetTestModel.Budget" Role="Budget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BudgetType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Budget">
+              <PropertyRef Name="BudgetTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Income_IncomeSource">
-          <End Type="BudgetModel.IncomeSource" Role="IncomeSource" Multiplicity="1" />
-          <End Type="BudgetModel.Income" Role="Income" Multiplicity="*" />
+          <End Type="BudgetTestModel.IncomeSource" Role="IncomeSource" Multiplicity="1" />
+          <End Type="BudgetTestModel.Income" Role="Income" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IncomeSource">
               <PropertyRef Name="Id" />
@@ -226,52 +226,38 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BudgetModelStoreContainer" CdmEntityContainer="BudgetEntities">
+        <EntityContainerMapping StorageEntityContainer="BudgetTestModelStoreContainer" CdmEntityContainer="BudgetTestEntities">
           <EntitySetMapping Name="Budgets">
-            <EntityTypeMapping TypeName="BudgetModel.Budget">
+            <EntityTypeMapping TypeName="BudgetTestModel.Budget">
               <MappingFragment StoreEntitySet="Budget">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="BudgetTypeId" ColumnName="BudgetTypeId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="BudgetTypeId" ColumnName="BudgetTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BudgetTypes">
-            <EntityTypeMapping TypeName="BudgetModel.BudgetType">
+            <EntityTypeMapping TypeName="BudgetTestModel.BudgetType">
               <MappingFragment StoreEntitySet="BudgetType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="BudgetType1" ColumnName="BudgetType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GiftCards">
-            <EntityTypeMapping TypeName="BudgetModel.GiftCard">
+            <EntityTypeMapping TypeName="BudgetTestModel.GiftCard">
               <MappingFragment StoreEntitySet="GiftCard">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Place" ColumnName="Place" />
-                <ScalarProperty Name="InitialAmount" ColumnName="InitialAmount" />
-                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
                 <ScalarProperty Name="AccessCode" ColumnName="AccessCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Purchases">
-            <EntityTypeMapping TypeName="BudgetModel.Purchase">
-              <MappingFragment StoreEntitySet="Purchases">
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="InitialAmount" ColumnName="InitialAmount" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PurchaseTypeId" ColumnName="PurchaseTypeId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
-                <ScalarProperty Name="GiftCardId" ColumnName="GiftCardId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="FutureReimbursement" ColumnName="FutureReimbursement" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Incomes">
-            <EntityTypeMapping TypeName="BudgetModel.Income">
+            <EntityTypeMapping TypeName="BudgetTestModel.Income">
               <MappingFragment StoreEntitySet="Income">
                 <ScalarProperty Name="IsCash" ColumnName="IsCash" />
                 <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
@@ -285,7 +271,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IncomeSources">
-            <EntityTypeMapping TypeName="BudgetModel.IncomeSource">
+            <EntityTypeMapping TypeName="BudgetTestModel.IncomeSource">
               <MappingFragment StoreEntitySet="IncomeSource">
                 <ScalarProperty Name="PayFrequency" ColumnName="PayFrequency" />
                 <ScalarProperty Name="EstimatedIncome" ColumnName="EstimatedIncome" />
@@ -297,7 +283,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="BudgetTestModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchases">
+                <ScalarProperty Name="FutureReimbursement" ColumnName="FutureReimbursement" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="GiftCardId" ColumnName="GiftCardId" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PurchaseTypeId" ColumnName="PurchaseTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

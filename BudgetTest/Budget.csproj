@@ -118,23 +118,23 @@
     <Content Include="CustomJS\DateExtensions.js" />
     <Content Include="CustomJS\HoverForms.js" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\BudgetReal.edmx">
+    <EntityDeploy Include="Models\BudgetTest.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BudgetReal.Designer.cs</LastGenOutput>
+      <LastGenOutput>BudgetTest.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\BudgetReal.edmx.diagram">
-      <DependentUpon>BudgetReal.edmx</DependentUpon>
+    <Content Include="Models\BudgetTest.edmx.diagram">
+      <DependentUpon>BudgetTest.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Models\BudgetReal.Context.tt">
+    <Content Include="Models\BudgetTest.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BudgetReal.edmx</DependentUpon>
-      <LastGenOutput>BudgetReal.Context.cs</LastGenOutput>
+      <DependentUpon>BudgetTest.edmx</DependentUpon>
+      <LastGenOutput>BudgetTest.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\BudgetReal.tt">
+    <Content Include="Models\BudgetTest.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BudgetReal.edmx</DependentUpon>
-      <LastGenOutput>BudgetReal.cs</LastGenOutput>
+      <DependentUpon>BudgetTest.edmx</DependentUpon>
+      <LastGenOutput>BudgetTest.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -162,38 +162,38 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Budget.cs">
-      <DependentUpon>BudgetReal.tt</DependentUpon>
+      <DependentUpon>BudgetTest.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BudgetReal.Context.cs">
+    <Compile Include="Models\BudgetTest.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BudgetReal.Context.tt</DependentUpon>
+      <DependentUpon>BudgetTest.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BudgetReal.cs">
+    <Compile Include="Models\BudgetTest.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BudgetReal.tt</DependentUpon>
+      <DependentUpon>BudgetTest.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BudgetReal.Designer.cs">
+    <Compile Include="Models\BudgetTest.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BudgetReal.edmx</DependentUpon>
+      <DependentUpon>BudgetTest.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\BudgetType.cs">
-      <DependentUpon>BudgetReal.tt</DependentUpon>
+      <DependentUpon>BudgetTest.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomObjects.cs" />
     <Compile Include="Models\GiftCard.cs">
-      <DependentUpon>BudgetReal.tt</DependentUpon>
+      <DependentUpon>BudgetTest.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Income.cs">
-      <DependentUpon>BudgetReal.tt</DependentUpon>
+      <DependentUpon>BudgetTest.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IncomeSource.cs">
-      <DependentUpon>BudgetReal.tt</DependentUpon>
+      <DependentUpon>BudgetTest.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Purchase.cs">
-      <DependentUpon>BudgetReal.tt</DependentUpon>
+      <DependentUpon>BudgetTest.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -231,7 +231,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50667</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Budget</IISUrl>
+          <IISUrl>http://localhost/BudgetTest</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

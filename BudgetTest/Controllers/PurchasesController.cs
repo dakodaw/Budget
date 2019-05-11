@@ -11,7 +11,7 @@ namespace BudgetTest.Controllers
 {
     public class PurchasesController : ApiController
     {
-        BudgetEntities _db = new BudgetEntities();
+        BudgetTestEntities _db = new BudgetTestEntities();
 
         [HttpGet]
         public List<PurchaseLine> GetPurchaseLines([FromUri] bool getPurchaseLines, [FromUri] DateTime monthYear)

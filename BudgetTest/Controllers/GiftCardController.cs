@@ -11,7 +11,7 @@ namespace BudgetTest.Controllers
 {
     public class GiftCardController : ApiController
     {
-        BudgetEntities _db = new BudgetEntities();
+        BudgetTestEntities _db = new BudgetTestEntities();
         // GET api/<controller>
         [HttpGet]
         public List<GiftCardSelectLine> GetGiftCardLines([FromUri] bool getGiftCardLines)
