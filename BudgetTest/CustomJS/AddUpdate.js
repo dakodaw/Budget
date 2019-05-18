@@ -248,7 +248,7 @@ $(document.body).on('click touchstart', '#UpdatePurchase', function () {
         var Amount = $(document.getElementById('PurchaseAmount')).val();
         var PurchasePaymentType = $(document.getElementById("UpdatePurchasePaymentType")).val();
         var Date = $(document.getElementById('PurchaseDate')).val();
-        var GiftCardId = $(document.getElementById('GiftCardId')).val();
+        var GiftCardId = $(document.getElementById('PurchaseGiftCardId')).val();
         var FutureReimbursement = $(document.getElementById('initialAmount')).val();
         $.post("../api/Purchases?AddUpdatePurchase=true&purchaseId=" + PurchaseId + "",
             {
