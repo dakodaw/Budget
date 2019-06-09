@@ -75,7 +75,7 @@ namespace BudgetTest.Controllers
             decimal currentBalance = initialBalance;
             foreach(var purchase in history)
             {
-                currentBalance = initialBalance - purchase.Amount;
+                currentBalance = currentBalance - purchase.Amount;
             }
             return currentBalance;
         }
