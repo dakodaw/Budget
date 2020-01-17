@@ -272,9 +272,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50667</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Projects/BudgetApi</IISUrl>
+          <IISUrl>http://localhost/Projects/BudgetAngular/api</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost/BudgetTest/api</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost/Projects/BudgetAngular/api</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
