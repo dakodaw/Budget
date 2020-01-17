@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BudgetTest</RootNamespace>
-    <AssemblyName>BudgetTest</AssemblyName>
+    <RootNamespace>BudgetApi</RootNamespace>
+    <AssemblyName>BudgetApi</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
@@ -64,6 +64,9 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -78,6 +81,9 @@
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
@@ -111,41 +117,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Budget\Budget.css" />
-    <Content Include="Budget\Budget.html" />
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\chosen-sprite%402x.png" />
-    <Content Include="Content\chosen-sprite.png" />
-    <Content Include="Content\chosen.css" />
-    <Content Include="Content\chosen.min.css" />
-    <Content Include="Content\fontawesome-all.min.css" />
-    <Content Include="Content\jquery-ui.css" />
-    <Content Include="Content\Site.css" />
-    <Content Include="CustomJS\AddUpdate.js" />
-    <Content Include="CustomJS\Budget.js" />
-    <Content Include="CustomJS\ColorDefinitions.js" />
-    <Content Include="CustomJS\DataLoader.js" />
-    <Content Include="CustomJS\DateExtensions.js" />
-    <Content Include="CustomJS\HoverForms.js" />
     <Content Include="Global.asax" />
-    <Content Include="BudgetTestRedirect.html" />
-    <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
     <EntityDeploy Include="Models\BudgetTest.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BudgetTest.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="HtmlPage1.html" />
-    <Content Include="index.html" />
     <Content Include="Models\BudgetTest.edmx.diagram">
       <DependentUpon>BudgetTest.edmx</DependentUpon>
     </Content>
@@ -296,9 +272,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50667</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/BudgetTest</IISUrl>
+          <IISUrl>http://localhost/Projects/BudgetApi</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost/BudgetTest</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost/BudgetTest/api</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BudgetTest.Models
+namespace BudgetApi.Models
 {
     using System;
     using System.Collections.Generic;

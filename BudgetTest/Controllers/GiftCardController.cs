@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using BudgetTest.Models;
-using BudgetTest.Controllers;
+using BudgetApi.Models;
+using System.Web.Http.Cors;
 
 namespace BudgetTest.Controllers
 {
+    [EnableCors(origins: "*", headers: "*",
+    methods: "*", SupportsCredentials = true)]
     public class GiftCardController : ApiController
     {
         BudgetTestEntities _db = new BudgetTestEntities();

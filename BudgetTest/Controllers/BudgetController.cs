@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BudgetApi.Models;
 using BudgetTest.Models;
+using System.Web.Http.Cors;
 
 namespace BudgetTest.Controllers
 {
+    [EnableCors(origins: "*", headers: "*",
+    methods: "*", SupportsCredentials = true)]
     public class BudgetController : ApiController
     {
         BudgetTestEntities _db = new BudgetTestEntities();
@@ -25,6 +26,7 @@ namespace BudgetTest.Controllers
             return budgetTypes.OrderBy(i=>i.BudgetTypeName).ToList();
         }
 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpGet]
         public List<BudgetWithPurchaseInfo> GetBudgetLines([FromUri] bool getBudgetLines, [FromUri] DateTime monthYear)
         {
@@ -119,6 +121,7 @@ namespace BudgetTest.Controllers
             return budgetLines;
         }
 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpPost]
         public bool AddUpdateBudget([FromUri] bool addUpdateBudget, [FromBody] Budget inputBudget, [FromUri] int budgetId = -1)
         {
@@ -164,6 +167,7 @@ namespace BudgetTest.Controllers
             }
         }
 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpGet]
         public bool DeleteBudgetEntry([FromUri] bool deleteBudgetEntry, [FromUri] int budgetId)
         {
@@ -181,6 +185,7 @@ namespace BudgetTest.Controllers
             return success;
         }
 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpGet]
         public BudgetInfo GetExistingBudget([FromUri] bool getExistingBudget, [FromUri] int budgetId)
         {
@@ -199,6 +204,7 @@ namespace BudgetTest.Controllers
             return existingPurchase;
         }
 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpPost]
         public double ScenarioCheck([FromUri] bool scenarioCheck, [FromBody] ScenarioInput scenarioInput)
         {
@@ -234,6 +240,7 @@ namespace BudgetTest.Controllers
             return (scenarioInput.initialAmount + amountPlannedToEarn - amountPlannedToSpend);
         }
 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpPost]
         public bool AddUpdateBudgetType([FromUri] bool addUpdateBudgetType, [FromBody] BudgetType budgetType, [FromUri] int budgetTypeId = -1)
         {
@@ -268,6 +275,7 @@ namespace BudgetTest.Controllers
             }
         }
 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpGet]
         public bool DeleteBudgetTypeEntry([FromUri] bool deleteBudgetTypeEntry, [FromUri] int budgetTypeId)
         {
@@ -284,6 +292,7 @@ namespace BudgetTest.Controllers
             }
         }
 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpGet]
         public BudgetTypes GetBudgetType([FromUri] bool getBudgetType, [FromUri] int budgetTypeId)
         {
