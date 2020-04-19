@@ -8,8 +8,6 @@ using System.Web.Http.Cors;
 
 namespace BudgetTest.Controllers
 {
-    [EnableCors(origins: "*", headers: "*",
-    methods: "*", SupportsCredentials = true)]
     public class BudgetController : ApiController
     {
         BudgetTestEntities _db = new BudgetTestEntities();
